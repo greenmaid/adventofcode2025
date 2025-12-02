@@ -1,4 +1,5 @@
 mod day01;
+mod day02;
 mod tools;
 
 use chrono::Datelike;
@@ -57,6 +58,7 @@ fn get_current_day() -> u8 {
 fn run_day(day: u8) {
     match day {
         1 => solve_day01(),
+        2 => solve_day02(),
         _ => println!("Day not implemented yet"),
     }
 }
@@ -65,4 +67,11 @@ fn solve_day01() {
     let res_day01 = day01::solve();
     println!("Day 01, Part 1 solution: {}", res_day01.0);
     println!("Day 01, Part 2 solution: {}", res_day01.1);
+}
+
+fn solve_day02() {
+    let res_day02_1 = day02::solve1();
+    let res_day02_2 = day02::solve2();
+    println!("Day 02, Part 1 solution: {}", res_day02_1);
+    println!("Day 02, Part 2 solution: {}", res_day02_2);
 }
