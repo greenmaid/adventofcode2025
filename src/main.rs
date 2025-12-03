@@ -1,5 +1,6 @@
 mod day01;
 mod day02;
+mod day03;
 mod tools;
 
 use chrono::Datelike;
@@ -31,8 +32,8 @@ fn main() {
         }
     } else {
         let day: u8;
-        if let Some(required_day) = args.day {
-            day = required_day;
+        if let Some(requested_day) = args.day {
+            day = requested_day;
         } else {
             day = get_current_day();
         }
@@ -59,6 +60,7 @@ fn run_day(day: u8) {
     match day {
         1 => solve_day01(),
         2 => solve_day02(),
+        3 => solve_day03(),
         _ => println!("Day not implemented yet"),
     }
 }
@@ -71,7 +73,14 @@ fn solve_day01() {
 
 fn solve_day02() {
     let res_day02_1 = day02::solve1();
-    let res_day02_2 = day02::solve2();
     println!("Day 02, Part 1 solution: {}", res_day02_1);
+    let res_day02_2 = day02::solve2();
     println!("Day 02, Part 2 solution: {}", res_day02_2);
+}
+
+fn solve_day03() {
+    let res_day03_1 = day03::solve1();
+    println!("Day 03, Part 1 solution: {}", res_day03_1);
+    let res_day03_2 = day03::solve2();
+    println!("Day 03, Part 2 solution: {}", res_day03_2);
 }
