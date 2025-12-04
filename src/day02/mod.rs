@@ -55,3 +55,26 @@ pub fn solve2() -> i64 {
     }
     return result2;
 }
+
+// pub fn solve2() -> i64 {
+//     let input_text = get_input_text();
+//     input_text
+//         .split(',')
+//         .flat_map(|id_ranges| {
+//             let parts: Vec<&str> = id_ranges.split('-').collect();
+//             let start: i64 = parts[0].parse().unwrap();
+//             let end: i64 = parts[1].parse().unwrap();
+//             (start..=end).filter(|&i| has_repeating_pattern(&i.to_string()))
+//         })
+//         .sum()
+// }
+
+// fn has_repeating_pattern(s: &str) -> bool {
+//     let len = s.len();
+//     (1..=len / 2).any(|k| {
+//         len % k == 0 && {
+//             let pattern = &s[..k];
+//             s.as_bytes().chunks(k).all(|chunk| chunk == pattern.as_bytes())
+//         }
+//     })
+// }
