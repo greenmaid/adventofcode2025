@@ -2,6 +2,7 @@ mod day01;
 mod day02;
 mod day03;
 mod day04;
+mod day05;
 mod tools;
 
 use chrono::Datelike;
@@ -73,6 +74,7 @@ fn run_day(day: u8) {
         2 => solve_day02(),
         3 => solve_day03(),
         4 => solve_day04(),
+        5 => solve_day05(),
         _ => println!("Day not implemented yet"),
     }
 }
@@ -105,5 +107,12 @@ fn solve_day04() {
     let part1 = day04::solve1();
     print_solution(4, 1, part1);
     let part2 = day04::solve2();
+    print_solution(4, 2, part2);
+}
+
+fn solve_day05() {
+    let part1 = day05::solve1();
+    print_solution(4, 1, part1);
+    let part2 = day05::solve2();
     print_solution(4, 2, part2);
 }
