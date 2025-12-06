@@ -9,7 +9,7 @@ fn get_input() -> Vec<Vec<char>> {
 pub fn solve1() -> usize {
     let mut grid = get_input();
     if tools::is_test_mode() {print_grid(&grid);}
-    let result = remove_accessible_roll(&mut grid, 'x');
+    let result = remove_accessible_rolls(&mut grid, 'x');
     if tools::is_test_mode() {print_grid(&grid);}
     return result;
 }
@@ -19,7 +19,7 @@ pub fn solve2() -> usize {
     let mut grid = get_input();
     if tools::is_test_mode() {print_grid(&grid);}
     loop {
-        let removed = remove_accessible_roll(&mut grid, 'o');
+        let removed = remove_accessible_rolls(&mut grid, 'o');
         if tools::is_test_mode() {print_grid(&grid);}
         if removed == 0 {break;}
         total_removed += removed;
@@ -66,7 +66,7 @@ fn print_grid(grid: &Vec<Vec<char>>) {
     println!("");
 }
 
-fn remove_accessible_roll(grid: &mut Vec<Vec<char>>, replacement_char: char) -> usize {
+fn remove_accessible_rolls(grid: &mut Vec<Vec<char>>, replacement_char: char) -> usize {
     let mut removed = 0;
     for y in 0..grid.len() {
         for x in 0..grid[0].len() {

@@ -3,7 +3,8 @@ use crate::tools;
 const CURRENT_DAY : &str = "dayxx";
 
 fn get_input() -> Vec<String> {
-    tools::read_lines(CURRENT_DAY)
+    let lines = tools::read_lines(CURRENT_DAY);
+    lines
 }
 
 pub fn solve1() -> usize {
