@@ -18,16 +18,16 @@ pub fn solve1() -> usize {
         .map(|s| s.to_string())
         .collect();
 
-    let numbers: Vec<Vec<isize>> = table[..table.len()-1].iter()
+    let numbers: Vec<Vec<usize>> = table[..table.len()-1].iter()
         .map(
-            |v| v.iter().map(|s| s.parse::<isize>().unwrap()).collect()
+            |v| v.iter().map(|s| s.parse::<usize>().unwrap()).collect()
         ).collect();
 
-    let result: isize = (0..=ops.len()-1).map( |i|
+    let result: usize = (0..=ops.len()-1).map( |i|
         match ops[i].as_str() {
             "*" => numbers.iter().map(|v| v[i]).product(),
             "+" => numbers.iter().map(|v| v[i]).sum(),
-            &_ => 0 as isize,
+            _ => 0 as usize,
         }
     ).sum();
     result as usize
@@ -55,13 +55,11 @@ pub fn solve2() -> usize {
                 Err(_)  => break,
             }
         }
-        // dbg!(&v);
         let sub_result = match op {
             "*" => v.iter().product(),
             "+" => v.iter().sum(),
-            &_ => 0 as usize,
+            _ => 0 as usize,
         };
-        // dbg!(sub_result);
 
         result2 += sub_result
 

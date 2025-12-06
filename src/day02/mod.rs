@@ -29,52 +29,58 @@ pub fn solve1() -> i64 {
     return result1;
 }
 
-pub fn solve2() -> i64 {
-    let mut result2 = 0;
-    let input_text = get_input_text();
-    for id_ranges in input_text.split(',') {
-        let parts: Vec<&str> = id_ranges.split('-').collect();
-        let start: i64 = parts[0].parse().unwrap();
-        let end: i64 = parts[1].parse().unwrap();
-        for i in start..=end {
-            let i_str = format!("{i}");
-            let mid = i_str.len() / 2;
-            for k in 1..=mid {
-                if i_str.len() % k == 0 {
-                    let mut chunks = i_str.as_bytes().chunks(k);
-                    let first_chunk = chunks.clone().next().unwrap();
-                    if chunks.all(|chunk| chunk == first_chunk) {
-                        // println!("Found repeat of size {}: {}", k, i_str);
-                        result2 += i;
-                        break;
-                    }
-                }
-            }
+// pub fn solve2() -> i64 {
+//     let mut result2 = 0;
+//     let input_text = get_input_text();
+//     for id_ranges in input_text.split(',') {
+//         let parts: Vec<&str> = id_ranges.split('-').collect();
+//         let start: i64 = parts[0].parse().unwrap();
+//         let end: i64 = parts[1].parse().unwrap();
+//         for i in start..=end {
+//             let i_str = format!("{i}");
+//             let mid = i_str.len() / 2;
+//             for k in 1..=mid {
+//                 if i_str.len() % k == 0 {
+//                     let mut chunks = i_str.as_bytes().chunks(k);
+//                     let first_chunk = chunks.clone().next().unwrap();
+//                     if chunks.all(|chunk| chunk == first_chunk) {
+//                         // println!("Found repeat of size {}: {}", k, i_str);
+//                         result2 += i;
+//                         break;
+//                     }
+//                 }
+//             }
 
-        }
-    }
-    return result2;
+//         }
+//     }
+//     return result2;
+// }
+
+pub fn solve2() -> i64 {
+    let input_text = get_input_text();
+    input_text
+        .split(',')
+        .flat_map(|id_ranges| {
+            let parts: Vec<&str> = id_ranges.split('-').collect();
+            let start: i64 = parts[0].parse().unwrap();
+            let end: i64 = parts[1].parse().unwrap();
+            (start..=end).filter(|&i| has_repeating_pattern(i))
+        })
+        .sum()
 }
 
-// pub fn solve2() -> i64 {
-//     let input_text = get_input_text();
-//     input_text
-//         .split(',')
-//         .flat_map(|id_ranges| {
-//             let parts: Vec<&str> = id_ranges.split('-').collect();
-//             let start: i64 = parts[0].parse().unwrap();
-//             let end: i64 = parts[1].parse().unwrap();
-//             (start..=end).filter(|&i| has_repeating_pattern(&i.to_string()))
-//         })
-//         .sum()
-// }
-
-// fn has_repeating_pattern(s: &str) -> bool {
-//     let len = s.len();
-//     (1..=len / 2).any(|k| {
-//         len % k == 0 && {
-//             let pattern = &s[..k];
-//             s.as_bytes().chunks(k).all(|chunk| chunk == pattern.as_bytes())
-//         }
-//     })
-// }
+fn has_repeating_pattern(n: i64) -> bool {
+    let s = n.to_string();
+    let bytes = s.as_bytes();
+    let len = bytes.len();
+    for k in 1..=len / 2 {
+        // Only check divisors of the string length
+        if len % k == 0 {
+            let pattern = &bytes[..k];
+            if bytes.chunks(k).all(|chunk| chunk == pattern) {
+                return true;
+            }
+        }
+    }
+    false
+}
