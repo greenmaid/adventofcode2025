@@ -8,6 +8,7 @@ mod day06;
 mod day07;
 mod day08;
 mod day09;
+mod day10;
 
 use chrono::Datelike;
 use clap::Parser;
@@ -83,6 +84,7 @@ fn run_day(day: u8) {
         7 => solve_day07(),
         8 => solve_day08(),
         9 => solve_day09(),
+       10 => solve_day10(),
         _ => println!("Day not implemented yet"),
     }
 }
@@ -151,4 +153,11 @@ fn solve_day09() {
     print_solution(9, 1, part1);
     let part2 = day09::solve2();
     print_solution(9, 2, part2);
+}
+
+fn solve_day10() {
+    let part1 = day10::solve1();
+    print_solution(10, 1, part1);
+    let part2 = day10::solve2();
+    print_solution(10, 2, part2);
 }
